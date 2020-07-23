@@ -24,7 +24,7 @@ $ django-admin startapp accounts
 ```
 
 ## URLの設定
-## 作成したアプリケーションとURLのマッピングを設定する
+### 作成したアプリケーションとURLのマッピングを設定する
 - config/urls.pyをaccounts/urls.pyにコピー
 - config/urls.pyにアプリケーションのurls.pyをincludeする
 - accounts/urls.pyでURLを追加していく
@@ -35,7 +35,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('accounts/urls'))
+    path('accounts/', include('accounts.urls'))
 ]
 ```
 ```
@@ -48,4 +48,27 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
 ]
+```
+
+## ビューの設定
+```
+# accounts/urls.py
+from django.urls import path
+from . import views
+
+app_name = 'accounts'
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+```
+```
+# accounts/views.py
+from django.shortcuts import render, HttpResponse
+from django.views import View
+
+class IndexView(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('Hello World')
+
+index = IndexView.as_view()
 ```
