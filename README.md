@@ -12,3 +12,13 @@ $ pipenv install
 ```
 $ pipenv install django
 ```
+
+## Djangoプロジェクトの作成
+```
+$ django-admin startproject config .  # カレントディレクトリにプロジェクト作成
+```
+
+## Djangoアプリケーションの作成
+```
+$ django-admin startapp accounts
+```
