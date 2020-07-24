@@ -72,3 +72,39 @@ class IndexView(View):
 
 index = IndexView.as_view()
 ```
+
+## テンプレート設定
+```
+# base.html
+{% load static %}<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    {% block extra_css %}{% endblock %}
+    <title>{% block page_title %}lesson-django{% endblock %}</title>
+  </head>
+  <body>
+    <div id="app">
+      {% block main %}{% endblock %}
+    </div>
+    <script src="{% static 'js/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/vue.js' %}"></script>
+    <script src="{% static 'js/axios.js' %}"></script>
+    {% block extra_script %}{% endblock %}
+  </body>
+</html>
+```
+```
+# accounts/index.html
+{% extends 'base.html' %}
+{% block page_title %}lesson-django - index{% endblock %}
+{% block main %}
+Hello World {{ msg }}
+<button type="button" class="btn btn-primary">Hi</button>
+{% endblock %}
+```
